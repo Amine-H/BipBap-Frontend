@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:p="http://primefaces.org/ui"
+   xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>BipBap</title>
+</h:head>
+<h:body>
+	<p:panel>
+		<ui:include src="/includes/header.xhtml" />
+	</p:panel>
+	<p:panel>
+		<p:fieldset legend="Bilan">
+			<p:dataTable value="#{bilan.objectifs}" var="objectif">
+				<p:column headerText="Catégorie">
+					<h:outputText value="#{objectif}"/>
+				</p:column>
+
+				<p:column headerText="Objectif">
+					<h:outputText value="#{objectif}"/>
+				</p:column>
+				
+				<p:column headerText="Description">
+					<h:outputText value="#{objectif}"/>
+				</p:column>
+
+				<p:column headerText="Mesure">
+					<h:outputText value="#{objectif}"/>
+				</p:column>
+				
+				<p:column headerText="responsable mesure">
+					<h:outputText value="responsable"/>
+				</p:column>
+				
+				<p:column headerText="Poids">
+					<h:outputText value="poids"/>
+				</p:column>
+				
+				<p:column headerText="Résultat">
+					<h:outputText value="resultat"/>
+				</p:column>
+				
+				<p:column headerText="Note finale">
+					<h:outputText value="note"/>
+				</p:column>
+			</p:dataTable>
+		</p:fieldset>
+	</p:panel>
+	<p:panel>
+		<ui:include src="/includes/footer.xhtml" />
+	</p:panel>
+</h:body>
+</html>

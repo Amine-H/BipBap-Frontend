@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>BipBap</title>
+</h:head>
+<h:body>
+	<p:panel>
+		<ui:include src="/includes/header.xhtml" />
+	</p:panel>
+	<p:panel>
+		<p:fieldset legend="#{utilisateur.utilisateur.nom} #{utilisateur.utilisateur.prenom}">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Nom"/>
+				<p:inputText value="#{utilisateur.utilisateur.nom}"/>
+				
+				<p:outputLabel value="Prenom"/>
+				<p:inputText value="#{utilisateur.utilisateur.prenom}"/>
+
+				<p:outputLabel value="Matricule"/>
+				<p:inputText value="#{utilisateur.utilisateur.matricule}"/>
+				
+				<p:outputLabel value="Poste"/>
+				<p:inputText value="#{utilisateur.utilisateur.poste}"/>
+				
+				<p:outputLabel value="Email"/>
+				<p:inputText value="#{utilisateur.utilisateur.email}"/>
+				
+				<p:outputLabel value="Password"/>
+				<p:inputText value="#{utilisateur.utilisateur.password}"/>
+				
+				<p:commandButton action="utilisateur.modifier" value="Modifier"/>
+				<p:commandButton action="utilisateur.annuler" value="Annuler"/>
+			</p:panelGrid>
+		</p:fieldset>
+	</p:panel>
+	<p:panel>
+		<ui:include src="/includes/footer.xhtml" />
+	</p:panel>
+</h:body>
+</html>

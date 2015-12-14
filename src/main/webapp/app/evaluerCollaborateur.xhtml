@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>BipBap</title>
+</h:head>
+<h:body>
+	<p:panel>
+		<ui:include src="/includes/header.xhtml" />
+	</p:panel>
+	<p:panel>
+		<p:fieldset legend="Evaluer Collaborateur">
+			<h:form>
+				<p:panelGrid columns="2">
+					<p:panelGrid columns="2">
+						<h:outputLabel for="matricule" value="Matricule du collaborateur" />
+						<p:inputText id="matricule" />
+
+						<h:outputLabel for="poste" value="Poste actuel" />
+						<p:inputText id="poste" />
+
+						<h:outputLabel for="nom" value="Nom" />
+						<p:inputText id="nom" />
+
+						<h:outputLabel for="prenom" value="Prénom" />
+						<p:inputText id="prenom" />
+
+						<h:outputLabel for="codeProjet" value="Code de Projet" />
+						<p:inputText id="codeProjet" />
+
+						<h:outputLabel for="debutIntervention"
+							value="Date de début d'intervention" />
+						<p:calendar id="debutIntervention" pattern="dd/MM/yyyy"
+							mask="true" />
+
+						<h:outputLabel for="finIntervention"
+							value="Date de fin d'intervention" />
+						<p:calendar id="finIntervention" pattern="dd/MM/yyyy" mask="true" />
+
+						<h:outputLabel for="role" value="Rôle joué" />
+						<p:inputText id="role" />
+
+						<h:outputLabel for="nombreJours"
+							value="Nombre de jours valorisés sur le projet" />
+						<p:inputText id="nombreJours" />
+						
+						<h:outputLabel for="remarqueGenerale" value="Remarque générale"/>
+						<p:inputTextarea id="remarqueGenerale" rows="10"/>
+						
+						<p:commandButton value="Enregistrer" icon="ui-icon-disk"/>
+						<p:commandButton value="Annuler" icon="ui-icon-cancel"/>
+					</p:panelGrid>
+					<p:panelGrid>
+						<f:facet name="header">
+							<p:row>
+								<p:column>Theme</p:column>
+								<p:column>Qualification</p:column>
+								<p:column>Remarque</p:column>
+							</p:row>
+						</f:facet>
+						<ui:repeat var="theme" value="#{evalCollaborateur.themes}">
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{theme}" />
+								</p:column>
+								<p:column>
+									<p:selectOneMenu>
+										<f:selectItem itemLabel="NA" itemValue="-1"/>
+										<f:selectItems value="#{evalCollaborateur.qualifications}"/>
+									</p:selectOneMenu>
+								</p:column>
+								<p:column>
+									<p:inputTextarea/>
+								</p:column>
+							</p:row>
+						</ui:repeat>
+					</p:panelGrid>
+				</p:panelGrid>
+			</h:form>
+		</p:fieldset>
+	</p:panel>
+	<p:panel>
+		<ui:include src="/includes/footer.xhtml" />
+	</p:panel>
+</h:body>
+</html>
