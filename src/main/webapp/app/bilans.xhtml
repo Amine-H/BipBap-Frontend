@@ -14,13 +14,23 @@
 	</p:panel>
 	<p:panel>
 		<p:fieldset legend="Bilans de #{bilans.utilisateur}">
-			<p:treeTable value="#{bilans.bilansTree}" var="bilan">
+			<p:dataTable value="#{bilans.bilans}" var="v_bilan">
 				<f:facet name="header">Bilans</f:facet>
 				<p:column headerText="Date">
+					<p:outputLabel value="#{v_bilan.dateCreation}" />
+				</p:column>
+				<p:column headerText="Type">
+					<p:outputLabel value="#{v_bilan.DTYPE}" />
 				</p:column>
 				<p:column headerText="Progression">
+					<p:progressBar styleClass="animated" value="#{v_bilan.progression}" />
 				</p:column>
-			</p:treeTable>
+				<p:column width="30">
+					<p:link outcome="bilan" value="voir">
+						<f:param name="id" value="#{v_bilan.id}"/>
+					</p:link>
+				</p:column>
+			</p:dataTable>
 		</p:fieldset>
 	</p:panel>
 	<p:panel>

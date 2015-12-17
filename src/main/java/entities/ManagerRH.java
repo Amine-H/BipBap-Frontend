@@ -2,6 +2,8 @@ package entities;
 
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement
 public class ManagerRH extends Utilisateur {
 	private static final long serialVersionUID = 3259601862182253323L;
 	private Set<Bilan> bilans;

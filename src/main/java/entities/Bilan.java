@@ -3,13 +3,16 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class Bilan implements Serializable {
 	private static final long serialVersionUID = -1027553204415003158L;
-	private long id;
-	private Date dateCreation;
-	private Collaborateur collaborateur;
-	private ManagerRH manager;
+	protected long id;
+	protected Date dateCreation;
+	protected Collaborateur collaborateur;
+	protected ManagerRH manager;
+	protected float progression;
 
 	public long getId() {
 		return id;

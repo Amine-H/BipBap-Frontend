@@ -2,6 +2,9 @@ package entities;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class BIP extends Bilan implements Serializable {
 	private static final long serialVersionUID = 3207158439314434363L;
 	private String planFormation;

@@ -2,6 +2,9 @@ package entities;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class BAP extends Bilan implements Serializable {
 	private static final long serialVersionUID = -7766572062544677149L;
 	private String decision;

@@ -3,17 +3,19 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class Utilisateur implements Serializable {
 	private static final long serialVersionUID = -5054129581423435016L;
-	private long id;
-	private String nom;
-	private String prenom;
-	private String email;
-	private String password;
-	private Date dateEmbauche;
-	private String matricule;
-	private String poste;
+	protected long id;
+	protected String nom;
+	protected String prenom;
+	protected String email;
+	protected String password;
+	protected Date dateEmbauche;
+	protected String matricule;
+	protected String poste;
 	public long getId() {
 		return id;
 	}
