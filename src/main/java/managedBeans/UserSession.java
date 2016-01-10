@@ -30,6 +30,7 @@ public class UserSession implements Serializable {
 			this.user = usr;
 			location = "app/bilans";
 		} catch (Exception e) {
+			e.printStackTrace();
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur", "email et/ou mot de passe incorrect"));
 		}

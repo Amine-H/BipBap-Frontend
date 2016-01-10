@@ -2,8 +2,11 @@ package rest.wrappers;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
+
+import entities.BilanObjectif;
 
 @XmlRootElement
 public class BilanWrapper implements Serializable{
@@ -18,6 +21,7 @@ public class BilanWrapper implements Serializable{
 	private String planFormation;
 	private String actions;
 	private String DTYPE;
+	private List<BilanObjectif> objectifs;
 
 	public String getDTYPE() {
 		return DTYPE;
@@ -97,5 +101,13 @@ public class BilanWrapper implements Serializable{
 
 	public void setManager(UtilisateurWrapper manager) {
 		this.manager = manager;
+	}
+
+	public List<BilanObjectif> getObjectifs() {
+		return objectifs;
+	}
+
+	public void setObjectifs(List<BilanObjectif> objectifs) {
+		this.objectifs = objectifs;
 	}
 }

@@ -9,9 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import entities.Utilisateur;
-import rest.clients.BilanClient;
-import rest.clients.UtilisateurClient;
+import entities.Collaborateur;
+import rest.clients.CollaborateurClient;
 import rest.wrappers.BilanWrapper;
 
 @RequestScoped
@@ -28,21 +27,19 @@ public class Bilans implements Serializable {
 		// setup bilans
 		setUpBilans();
 	}
-
+	//this function will get the id parameter then it will display the data
 	private void setUpBilans() {
 		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		try {
 			long u_id = Integer.parseInt(params.get("id"));
-			UtilisateurClient userClient = new UtilisateurClient();
-			Utilisateur user = userClient.find(u_id);
+			CollaborateurClient userClient = new CollaborateurClient();
+			Collaborateur user = userClient.find(u_id);
 			if(user == null){
 				return;
 			}
 			this.utilisateur = user.getNom() + " " + user.getPrenom();
 
-			BilanClient client = new BilanClient();
-
-			this.bilans = client.getForClient(u_id);
+			this.bilans = userClient.getBilans(u_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

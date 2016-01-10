@@ -2,20 +2,20 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Utilisateur implements Serializable {
 	private static final long serialVersionUID = -5054129581423435016L;
-	protected long id;
-	protected String nom;
-	protected String prenom;
-	protected String email;
-	protected String password;
-	protected Date dateEmbauche;
-	protected String matricule;
-	protected String poste;
+	private long id;
+	private String nom;
+	private String prenom;
+	private String email;
+	private String password;
+	private String DTYPE;
+	private Date dateEmbauche;
+	private String matricule;
+	private String poste;
 	public long getId() {
 		return id;
 	}
@@ -63,5 +63,11 @@ public class Utilisateur implements Serializable {
 	}
 	public void setPoste(String poste) {
 		this.poste = poste;
+	}
+	public String getDTYPE() {
+		return DTYPE;
+	}
+	public void setDTYPE(String dTYPE) {
+		DTYPE = dTYPE;
 	}
 }
