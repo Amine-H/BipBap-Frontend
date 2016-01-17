@@ -27,8 +27,10 @@ public class UserSession implements Serializable {
 		UtilisateurClient client = new UtilisateurClient();
 		try {
 			Utilisateur usr = client.login(user.getEmail(), user.getPassword());
-			this.user = usr;
-			location = "app/bilans";
+			if(usr != null){
+				this.user = usr;
+			}
+			location = "app/dashboard";
 		} catch (Exception e) {
 			e.printStackTrace();
 			FacesContext.getCurrentInstance().addMessage(null,

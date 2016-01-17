@@ -23,6 +23,7 @@ public class Main {
 		bap.setEtat("State");
 		bap.setDateCreation(new Date());
 		bap.setDecision("i'm not the one to decide");
+		bap.setProgression(75);
 
 		Collaborateur collab = new Collaborateur();
 		collab.setEmail("email");
