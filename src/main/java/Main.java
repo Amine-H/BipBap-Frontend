@@ -1,19 +1,24 @@
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import entities.BAP;
+import entities.Bilan;
+import entities.BilanObjectif;
 import entities.Collaborateur;
 import entities.ManagerRH;
+import entities.Objectif;
 import rest.clients.BAPClient;
+import rest.clients.BilanObjectifClient;
 import rest.clients.CollaborateurClient;
 import rest.clients.ManagerRHClient;
 
 public class Main {
 	public static void main(String args[]) {
 		BAPClient client = new BAPClient();
-		CollaborateurClient cClient = new CollaborateurClient();
-		ManagerRHClient mgClient = new ManagerRHClient(); 
+		BilanObjectifClient boClient = new BilanObjectifClient();
+
 		BAP bap = new BAP();
 		bap.setEtat("State");
 		bap.setDateCreation(new Date());
@@ -33,15 +38,35 @@ public class Main {
 		manager.setNom("Nom");
 		manager.setPrenom("Prenom");
 
+		bap.setId(1);
 		bap.setCollaborateur(collab);
 		bap.setManager(manager);
 
+		bap.setObjectifs(new ArrayList<BilanObjectif>());
+
+		BilanObjectif bObjectif = new BilanObjectif();
+		Objectif objectif = new Objectif();
+
+		objectif.setCategorie("Categorie");
+		objectif.setDescription("Description");
+		objectif.setLibelle("Libelle");
+		objectif.setMesure("Mesure");
+		objectif.setResponsable_mesure("Responsable mesure");
+
+		bObjectif.setBilan(bap);
+		bObjectif.setObjectif(objectif);
+		bObjectif.setPoids(13f);
+		bObjectif.setResultat(50f);
+
+		bap.getObjectifs().add(bObjectif);
+
 		try {
-			//cClient.create(collab);
-			//collab = cClient.findAll().get(0);
-			//mgClient.create(manager);
-			//manager = mgClient.findAll().get(0);
+			// cClient.create(collab);
+			// collab = cClient.findAll().get(0);
+			// mgClient.create(manager);
+			// manager = mgClient.findAll().get(0);
 			client.create(bap);
+			client.addObjectif(1, bObjectif);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

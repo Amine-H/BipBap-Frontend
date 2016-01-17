@@ -8,6 +8,8 @@ public class Objectif implements Serializable {
 	private String libelle;
 	private String description;
 	private String categorie;
+	private String mesure;
+	private String responsable_mesure;
 
 	public long getId() {
 		return id;
@@ -39,5 +41,21 @@ public class Objectif implements Serializable {
 
 	public void setCategorie(String categorie) {
 		this.categorie = categorie;
+	}
+
+	public String getMesure() {
+		return mesure;
+	}
+
+	public void setMesure(String mesure) {
+		this.mesure = mesure;
+	}
+
+	public String getResponsable_mesure() {
+		return responsable_mesure;
+	}
+
+	public void setResponsable_mesure(String responsable_mesure) {
+		this.responsable_mesure = responsable_mesure;
 	}
 }

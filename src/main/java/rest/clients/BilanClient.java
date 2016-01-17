@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.sun.jersey.api.client.GenericType;
 import com.sun.jersey.api.client.WebResource;
+
+import entities.BilanObjectif;
 import rest.wrappers.BilanWrapper;
 
 public class BilanClient extends AbstractClient<BilanWrapper> {
@@ -23,6 +25,15 @@ public class BilanClient extends AbstractClient<BilanWrapper> {
 
 		WebResource res = target.path(java.text.MessageFormat.format("collab/{0}", new Object[] { id }));
 		bilans = res.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<BilanWrapper>>() {});
+
+		return bilans;
+	}
+	
+	public List<BilanObjectif> getObjectifs(long id){
+		List<BilanObjectif> bilans = null;
+
+		WebResource res = target.path(java.text.MessageFormat.format("{0}/objectif", new Object[] { id }));
+		bilans = res.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<BilanObjectif>>() {});
 
 		return bilans;
 	}

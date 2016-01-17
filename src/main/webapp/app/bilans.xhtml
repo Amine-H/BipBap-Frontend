@@ -20,7 +20,7 @@
 					<p:outputLabel value="#{v_bilan.dateCreation}" />
 				</p:column>
 				<p:column headerText="Type">
-					<p:outputLabel value="#{v_bilan.DTYPE}" />
+					<p:outputLabel value="#{v_bilan.dtype}" />
 				</p:column>
 				<p:column headerText="Progression">
 					<p:progressBar styleClass="animated" value="#{v_bilan.progression}" />
@@ -28,6 +28,7 @@
 				<p:column width="30">
 					<p:link outcome="bilan" value="voir">
 						<f:param name="id" value="#{v_bilan.id}"/>
+						<f:param name="type" value="#{v_bilan.dtype}"/>
 					</p:link>
 				</p:column>
 			</p:dataTable>

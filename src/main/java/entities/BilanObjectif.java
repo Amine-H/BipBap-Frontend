@@ -3,13 +3,17 @@ package entities;
 import java.io.Serializable;
 import java.util.List;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 public class BilanObjectif implements Serializable {
 	private static final long serialVersionUID = 3583828327071081247L;
 	private long id;
 	private Objectif objectif;
+	@JsonIgnore
 	private Bilan bilan;
 	private float resultat;
 	private float poids;
+	@JsonIgnore
 	private List<Feedback> feedbacks;
 
 	public long getId() {

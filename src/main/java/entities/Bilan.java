@@ -3,15 +3,18 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlRootElement;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @XmlRootElement
-public class Bilan implements Serializable {
+public class Bilan implements Serializable,Identifiable {
 	private static final long serialVersionUID = -1027553204415003158L;
 	private long id;
 	private Date dateCreation;
 	private Collaborateur collaborateur;
 	private ManagerRH manager;
+	@JsonIgnore
 	private List<BilanObjectif> objectifs;
 	private String DTYPE;
 	protected float progression;

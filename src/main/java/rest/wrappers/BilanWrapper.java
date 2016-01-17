@@ -20,15 +20,15 @@ public class BilanWrapper implements Serializable{
 	private String etat;
 	private String planFormation;
 	private String actions;
-	private String DTYPE;
+	private String dtype;
 	private List<BilanObjectif> objectifs;
 
-	public String getDTYPE() {
-		return DTYPE;
+	public String getdtype() {
+		return dtype;
 	}
 
-	public void setDTYPE(String dTYPE) {
-		DTYPE = dTYPE;
+	public void setdtype(String dtype) {
+		this.dtype = dtype;
 	}
 
 	public float getProgression() {

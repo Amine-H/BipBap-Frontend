@@ -15,7 +15,7 @@ public class UtilisateurWrapper extends Utilisateur implements Serializable {
 	private static final long serialVersionUID = -4800031417810545542L;
 	@JsonIgnore
 	private Set<Bilan> bilans;
-	private String DTYPE;
+	private String dtype;
 
 	public Set<Bilan> getBilans() {
 		return bilans;
@@ -25,11 +25,11 @@ public class UtilisateurWrapper extends Utilisateur implements Serializable {
 		this.bilans = bilans;
 	}
 
-	public String getDTYPE() {
-		return DTYPE;
+	public String getdtype() {
+		return dtype;
 	}
 
-	public void setDTYPE(String dTYPE) {
-		DTYPE = dTYPE;
+	public void setdtype(String dtype) {
+		this.dtype = dtype;
 	}
 }

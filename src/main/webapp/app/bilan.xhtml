@@ -16,37 +16,46 @@
 		<p:fieldset legend="Bilan">
 			<p:dataTable value="#{bilan.objectifs}" var="objectif">
 				<p:column headerText="Catégorie">
-					<h:outputText value="#{objectif}"/>
+					<h:outputText value="#{objectif.objectif.categorie}"/>
 				</p:column>
 
 				<p:column headerText="Objectif">
-					<h:outputText value="#{objectif}"/>
+					<p:link href="/app/objectif.xhtml?id=#{objectif.objectif.id}">
+						<h:outputText value="#{objectif.objectif.libelle}"/>
+					</p:link>
 				</p:column>
 				
 				<p:column headerText="Description">
-					<h:outputText value="#{objectif}"/>
+					<h:outputText value="#{objectif.objectif.description}"/>
 				</p:column>
 
 				<p:column headerText="Mesure">
-					<h:outputText value="#{objectif}"/>
+					<h:outputText value="#{objectif.objectif.mesure}"/>
 				</p:column>
 				
-				<p:column headerText="responsable mesure">
-					<h:outputText value="responsable"/>
+				<p:column headerText="Responsable Mesure">
+					<h:outputText value="#{objectif.objectif.responsable_mesure}"/>
 				</p:column>
 				
 				<p:column headerText="Poids">
-					<h:outputText value="poids"/>
+					<h:outputText value="#{objectif.poids}%"/>
 				</p:column>
 				
 				<p:column headerText="Résultat">
-					<h:outputText value="resultat"/>
+					<h:outputText value="#{objectif.resultat}"/>
 				</p:column>
 				
 				<p:column headerText="Note finale">
-					<h:outputText value="note"/>
+					<h:outputText value="#{objectif.poids*objectif.resultat}%"/>
 				</p:column>
 			</p:dataTable>
+			<p:panelGrid columns="2" style="float:right">
+				<p:outputLabel>Total Poids</p:outputLabel>
+				<p:outputLabel>Note Finale</p:outputLabel>
+
+				<p:outputLabel value="#{bilan.totalPoids}%" />
+				<p:outputLabel value="#{bilan.noteFinale}%" />
+			</p:panelGrid>
 		</p:fieldset>
 	</p:panel>
 	<p:panel>
