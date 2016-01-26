@@ -14,18 +14,18 @@
 	</p:panel>
 	<p:panel>
 	<p:fieldset legend="Utilisateurs">
-		<p:dataTable value="#{utilisateurs.list}" var="utilisateur">
+		<p:dataTable value="#{utilisateurs.list}" var="user">
 			<p:column headerText="Nom">
-				<h:outputText value="#{utilisateur.nom}" />
+				<h:outputText value="#{user.nom}" />
 			</p:column>
 			<p:column headerText="Prenom">
-				<h:outputText value="#{utilisateur.prenom}" />
+				<h:outputText value="#{user.prenom}" />
 			</p:column>
 			<p:column headerText="Matricule">
-				<h:outputText value="#{utilisateur.matricule}" />
+				<h:outputText value="#{user.matricule}" />
 			</p:column>
 			<p:column headerText="Poste">
-				<h:outputText value="#{utilisateur.poste}" />
+				<h:outputText value="#{user.poste}" />
 			</p:column>
 		</p:dataTable>
 	</p:fieldset>

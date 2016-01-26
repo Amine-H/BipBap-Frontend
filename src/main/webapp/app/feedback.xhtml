@@ -17,41 +17,47 @@
 			<h:form>
 				<p:panelGrid columns="2">
 					<p:panelGrid columns="2">
+						<h:outputLabel for="nom" value="Nom" />
+						<p:inputText id="nom" disabled="true"
+							value="#{feedbackBean.collab_nom}" />
+
+						<h:outputLabel for="prenom" value="Prenom" />
+						<p:inputText id="prenom" disabled="true"
+							value="#{feedbackBean.collab_prenom}" />
+
 						<h:outputLabel for="matricule" value="Matricule du collaborateur" />
-						<p:inputText id="matricule" />
+						<p:inputText id="matricule" disabled="true"
+							value="#{feedbackBean.collab_matricule}" />
 
 						<h:outputLabel for="poste" value="Poste actuel" />
-						<p:inputText id="poste" />
-
-						<h:outputLabel for="nom" value="Nom" />
-						<p:inputText id="nom" />
-
-						<h:outputLabel for="prenom" value="Prénom" />
-						<p:inputText id="prenom" />
+						<p:inputText id="poste" value="#{feedbackBean.feedback.poste}" />
 
 						<h:outputLabel for="codeProjet" value="Code de Projet" />
-						<p:inputText id="codeProjet" />
+						<p:inputText id="codeProjet"
+							value="#{feedbackBean.feedback.codeProjet}" />
 
 						<h:outputLabel for="debutIntervention"
 							value="Date de début d'intervention" />
 						<p:calendar id="debutIntervention" pattern="dd/MM/yyyy"
-							mask="true" />
+							mask="true" value="#{feedbackBean.feedback.dateDebut}" />
 
 						<h:outputLabel for="finIntervention"
 							value="Date de fin d'intervention" />
-						<p:calendar id="finIntervention" pattern="dd/MM/yyyy" mask="true" />
+						<p:calendar id="finIntervention" pattern="dd/MM/yyyy" mask="true"
+							value="#{feedbackBean.feedback.dateFin}" />
 
 						<h:outputLabel for="role" value="Rôle joué" />
-						<p:inputText id="role" />
+						<p:inputText id="role" value="#{feedbackBean.feedback.role}"/>
 
 						<h:outputLabel for="nombreJours"
 							value="Nombre de jours valorisés sur le projet" />
-						<p:inputText id="nombreJours" />
-						
-						<h:outputLabel for="remarqueGenerale" value="Remarque générale"/>
-						<p:inputTextarea id="remarqueGenerale" rows="10"/>
-						
-						<p:commandButton value="Enregistrer" icon="ui-icon-disk"/>
+						<p:inputText id="nombreJours" value="#{feedbackBean.feedback.nombreJours}"/>
+
+						<h:outputLabel for="remarqueGenerale" value="Remarque générale" />
+						<p:inputTextarea id="remarqueGenerale" rows="10" value="#{feedbackBean.feedback.commentaire}"/>
+
+						<p:commandButton value="Enregistrer" icon="ui-icon-disk"
+							action="#{feedbackBean.doEnregistrer}" />
 					</p:panelGrid>
 					<p:panelGrid>
 						<f:facet name="header">
@@ -61,19 +67,20 @@
 								<p:column>Remarque</p:column>
 							</p:row>
 						</f:facet>
-						<ui:repeat var="theme" value="#{evalCollaborateur.themes}">
+						<ui:repeat var="qualification"
+							value="#{feedbackBean.feedback.qualifications}">
 							<p:row>
 								<p:column>
-									<p:outputLabel value="#{theme}" />
+									<p:outputLabel value="#{qualification.theme}" />
 								</p:column>
 								<p:column>
-									<p:selectOneMenu>
-										<f:selectItem itemLabel="NA" itemValue="-1"/>
-										<f:selectItems value="#{evalCollaborateur.qualifications}"/>
+									<p:selectOneMenu value="#{qualification.qualification}">
+										<f:selectItem itemLabel="NA" itemValue="-1" />
+										<f:selectItems value="#{feedbackBean.qualifications}" />
 									</p:selectOneMenu>
 								</p:column>
 								<p:column>
-									<p:inputTextarea/>
+									<p:inputTextarea value="#{qualification.remarque}" />
 								</p:column>
 							</p:row>
 						</ui:repeat>

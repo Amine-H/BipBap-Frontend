@@ -3,20 +3,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>BipBap</title>
 </h:head>
 <h:body>
-	<p:panel>
-		<ui:include src="/includes/header.xhtml" />
-	</p:panel>
-	<p:panel>
-		Hello World
-	</p:panel>
-	<p:panel>
-		<ui:include src="/includes/footer.xhtml" />
-	</p:panel>
+	<p:dialog visible="true" closable="false" modal="true"
+		draggable="false" header="Login" resizable="false">
+		<h:form>
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+			<p:panelGrid columns="2">
+				<h:outputLabel for="email" value="Email:" />
+				<p:inputText id="email" value="#{userSession.user.email}"
+					label="email" />
+
+				<h:outputLabel for="password" value="Mot de Passe:" />
+				<p:password id="password" value="#{userSession.user.password}"
+					label="password" />
+			</p:panelGrid>
+			<p:commandButton value="Connexion" icon="ui-icon-check"
+				action="#{userSession.doLogin}"/>
+		</h:form>
+	</p:dialog>
 </h:body>
 </html>

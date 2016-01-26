@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class Feedback implements Serializable {
 	private static final long serialVersionUID = -6920749212303590449L;
@@ -16,6 +17,7 @@ public class Feedback implements Serializable {
 	private int nombreJours;
 	private String commentaire;
 	private boolean prive;
+	private List<Qualification> qualifications;
 
 	public long getId() {
 		return id;
@@ -103,5 +105,13 @@ public class Feedback implements Serializable {
 
 	public void setPrive(boolean prive) {
 		this.prive = prive;
+	}
+
+	public List<Qualification> getQualifications() {
+		return qualifications;
+	}
+
+	public void setQualifications(List<Qualification> qualifications) {
+		this.qualifications = qualifications;
 	}
 }

@@ -1,6 +1,7 @@
 package managedBeans;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +14,8 @@ import rest.clients.ObjectifClient;
 
 @ManagedBean
 @ViewScoped
-public class Objectif_mb {
+public class Objectif_mb implements Serializable{
+	private static final long serialVersionUID = -7774795865954906489L;
 	private Objectif objectif;
 
 	@PostConstruct
