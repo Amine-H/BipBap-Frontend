@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>BipBap</title>
+</h:head>
+<h:body>
+	<p:panel>
+		<ui:include src="/includes/header.xhtml" />
+	</p:panel>
+	<p:panel>
+		<p:dataTable value="#{feedbacksBean.feedbacks}" var="feedback">
+			<p:column headerText="Evaluateur">
+				<p:outputLabel
+					value="#{feedback.evaluateur.nom} #{feedback.evaluateur.prenom}" />
+			</p:column>
+
+			<p:column headerText="Date debut">
+				<p:outputLabel value="#{feedback.dateDebut}" >
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:outputLabel>
+			</p:column>
+
+			<p:column headerText="Date fin">
+				<p:outputLabel value="#{feedback.dateFin}" >
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:outputLabel>
+			</p:column>
+
+			<p:column headerText="Nombre de jours">
+				<p:outputLabel value="#{feedback.nombreJours}" />
+			</p:column>
+			
+			<p:column headerText="Details">
+				<p:link outcome="feedback" value="voir">
+					<f:param name="o_id" value="#{param['o_id']}"/>
+					<f:param name="id" value="#{feedback.id}"/>
+				</p:link>
+			</p:column>
+		</p:dataTable>
+		<p:link outcome="feedback" value="ajouter Feedback">
+			<f:param name="o_id" value="#{param['o_id']}"/>
+		</p:link>
+	</p:panel>
+	<p:panel>
+		<ui:include src="/includes/footer.xhtml" />
+	</p:panel>
+</h:body>
+</html>

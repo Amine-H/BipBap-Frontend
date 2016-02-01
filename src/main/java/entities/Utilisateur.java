@@ -4,15 +4,17 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 @XmlRootElement
-public class Utilisateur implements Serializable {
+public class Utilisateur implements Serializable,Identifiable{
 	private static final long serialVersionUID = -5054129581423435016L;
 	private long id;
 	private String nom;
 	private String prenom;
 	private String email;
 	private String password;
-	private String DTYPE;
+	private String dtype;
 	private Date dateEmbauche;
 	private String matricule;
 	private String poste;
@@ -44,7 +46,7 @@ public class Utilisateur implements Serializable {
 		return password;
 	}
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = DigestUtils.md5Hex(password);
 	}
 	public Date getDateEmbauche() {
 		return dateEmbauche;
@@ -64,10 +66,13 @@ public class Utilisateur implements Serializable {
 	public void setPoste(String poste) {
 		this.poste = poste;
 	}
-	public String getDTYPE() {
-		return DTYPE;
+	public String getdtype() {
+		return dtype;
 	}
-	public void setDTYPE(String dTYPE) {
-		DTYPE = dTYPE;
+	public void setdtype(String dtype) {
+		this.dtype = dtype;
+	}
+	public boolean isA(String role) {
+		return role.equals(this.dtype);
 	}
 }

@@ -48,6 +48,12 @@
 				<p:column headerText="Note finale">
 					<h:outputText value="#{objectif.poids*objectif.resultat}%"/>
 				</p:column>
+				
+				<p:column headerText="Feedbacks">
+					<p:link href="/app/feedbacks.xhtml?o_id=#{objectif.id}">
+						<h:outputText value="Voir"/>
+					</p:link>
+				</p:column>
 			</p:dataTable>
 			<p:panelGrid columns="2" style="float:right">
 				<p:outputLabel>Total Poids</p:outputLabel>

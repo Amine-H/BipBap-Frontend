@@ -9,12 +9,16 @@ import entities.Collaborateur;
 import entities.Feedback;
 import entities.ManagerRH;
 import entities.Objectif;
+import entities.Qualification;
 import rest.clients.BAPClient;
+import rest.clients.BilanObjectifClient;
+import rest.clients.FeedbackClient;
 
 public class Main {
 	public static void main(String args[]) {
 		BAPClient client = new BAPClient();
-		//BilanObjectifClient boClient = new BilanObjectifClient();
+		BilanObjectifClient boClient = new BilanObjectifClient();
+		FeedbackClient feedbackClient = new FeedbackClient();
 
 		BAP bap = new BAP();
 		bap.setEtat("State");
@@ -32,7 +36,7 @@ public class Main {
 
 		ManagerRH manager = new ManagerRH();
 		manager.setEmail("email1");
-		manager.setPassword("pasword1");
+		manager.setPassword("password1");
 		manager.setNom("Nom");
 		manager.setPrenom("Prenom");
 
@@ -51,22 +55,24 @@ public class Main {
 		objectif.setMesure("Mesure");
 		objectif.setResponsable_mesure("Responsable mesure");
 
+		bObjectif.setId(4);
 		bObjectif.setBilan(bap);
 		bObjectif.setObjectif(objectif);
 		bObjectif.setPoids(13f);
 		bObjectif.setResultat(50f);
 
-		List<Feedback> feedbacks = new ArrayList<>();
 		Feedback feedback = new Feedback();
 		feedback.setCodeProjet("Code Projet");
 		feedback.setCommentaire("this is a long commmaaaaaant");
 		feedback.setDateDebut(new Date());
 		feedback.setDateFin(new Date());
 		feedback.setNomProjet("nomprojet");
-		feedbacks.add(feedback);
-		bObjectif.setFeedbacks(feedbacks);
+		
+		Qualification qualification = new Qualification();
+		qualification.setQualification(3);
+		qualification.setRemarque("Very good (y)");
+		qualification.setTheme("Productivité");
 
-		bap.getObjectifs().add(bObjectif);
 
 		try {
 			// cClient.create(collab);
@@ -75,6 +81,8 @@ public class Main {
 			// manager = mgClient.findAll().get(0);
 			client.create(bap);
 			client.addObjectif(1, bObjectif);
+			boClient.addFeedback(4, feedback);
+			feedbackClient.addQualification(4, qualification);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

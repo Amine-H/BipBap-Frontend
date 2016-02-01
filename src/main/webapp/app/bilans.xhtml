@@ -17,7 +17,9 @@
 			<p:dataTable value="#{bilans.bilans}" var="v_bilan">
 				<f:facet name="header">Bilans</f:facet>
 				<p:column headerText="Date">
-					<p:outputLabel value="#{v_bilan.dateCreation}" />
+					<p:outputLabel value="#{v_bilan.dateCreation}" >
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:outputLabel>
 				</p:column>
 				<p:column headerText="Type">
 					<p:outputLabel value="#{v_bilan.dtype}" />
@@ -32,6 +34,7 @@
 					</p:link>
 				</p:column>
 			</p:dataTable>
+			<p:commandButton action="#{bilans.createBilan}" value="Créer BIP"/>
 		</p:fieldset>
 	</p:panel>
 	<p:panel>

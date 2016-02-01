@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
-
 import entities.BilanObjectif;
 
 @XmlRootElement
@@ -23,11 +22,17 @@ public class BilanWrapper implements Serializable{
 	private String dtype;
 	private List<BilanObjectif> objectifs;
 
-	public String getdtype() {
+	/**
+	 * @return the dtype
+	 */
+	public String getDtype() {
 		return dtype;
 	}
 
-	public void setdtype(String dtype) {
+	/**
+	 * @param dtype the dtype to set
+	 */
+	public void setDtype(String dtype) {
 		this.dtype = dtype;
 	}
 

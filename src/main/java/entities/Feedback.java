@@ -3,11 +3,17 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
 
-public class Feedback implements Serializable {
+import org.codehaus.jackson.annotate.JsonIgnore;
+
+
+@XmlRootElement
+public class Feedback implements Serializable,Identifiable{
 	private static final long serialVersionUID = -6920749212303590449L;
 	private long id;
-	private Utilisateur evaluateur;
+	private Evaluateur evaluateur;
+	private BilanObjectif objectif;
 	private String poste;
 	private String codeProjet;
 	private String nomProjet;
@@ -17,7 +23,22 @@ public class Feedback implements Serializable {
 	private int nombreJours;
 	private String commentaire;
 	private boolean prive;
+	@JsonIgnore
 	private List<Qualification> qualifications;
+
+	/**
+	 * @return the objectif
+	 */
+	public BilanObjectif getObjectif() {
+		return objectif;
+	}
+
+	/**
+	 * @param objectif the objectif to set
+	 */
+	public void setObjectif(BilanObjectif objectif) {
+		this.objectif = objectif;
+	}
 
 	public long getId() {
 		return id;
@@ -27,11 +48,11 @@ public class Feedback implements Serializable {
 		this.id = id;
 	}
 
-	public Utilisateur getEvaluateur() {
+	public Evaluateur getEvaluateur() {
 		return evaluateur;
 	}
 
-	public void setEvaluateur(Utilisateur evaluateur) {
+	public void setEvaluateur(Evaluateur evaluateur) {
 		this.evaluateur = evaluateur;
 	}
 

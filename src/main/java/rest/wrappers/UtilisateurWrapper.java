@@ -25,11 +25,17 @@ public class UtilisateurWrapper extends Utilisateur implements Serializable {
 		this.bilans = bilans;
 	}
 
-	public String getdtype() {
+	/**
+	 * @return the dtype
+	 */
+	public String getDtype() {
 		return dtype;
 	}
 
-	public void setdtype(String dtype) {
+	/**
+	 * @param dtype the dtype to set
+	 */
+	public void setDtype(String dtype) {
 		this.dtype = dtype;
 	}
 }

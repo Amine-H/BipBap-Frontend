@@ -13,10 +13,11 @@
 		<ui:include src="/includes/header.xhtml" />
 	</p:panel>
 	<p:panel>
-		<p:outputLabel value="WIP, will do with links for the moment, click this link "/>
-		<p:link href="/app/bilans.xhtml?id=1">
-			<p:outputLabel value="Bilans du collab crée"/>
-		</p:link>
+		<h:dataTable value="#{dashboardBean.keyList}" var="key">
+			<h:column> 
+        		<p:link value="#{key}" href="#{dashboardBean.taskList[key]}"/>
+    		</h:column>
+		</h:dataTable>
 	</p:panel>
 	<p:panel>
 		<ui:include src="/includes/footer.xhtml" />

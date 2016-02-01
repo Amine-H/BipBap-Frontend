@@ -7,6 +7,9 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>BipBap</title>
+    <f:metadata>
+        <f:viewAction action="#{userSession.forwardToDashboard}" />
+    </f:metadata>
 </h:head>
 <h:body>
 	<p:dialog visible="true" closable="false" modal="true"
@@ -15,15 +18,15 @@
 			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 			<p:panelGrid columns="2">
 				<h:outputLabel for="email" value="Email:" />
-				<p:inputText id="email" value="#{userSession.user.email}"
+				<p:inputText id="email" value="#{userSession.email}"
 					label="email" />
 
 				<h:outputLabel for="password" value="Mot de Passe:" />
-				<p:password id="password" value="#{userSession.user.password}"
+				<p:password id="password" value="#{userSession.password}"
 					label="password" />
 			</p:panelGrid>
 			<p:commandButton value="Connexion" icon="ui-icon-check"
-				action="#{userSession.doLogin}"/>
+				action="#{userSession.doLogin}" ajax="false"/>
 		</h:form>
 	</p:dialog>
 </h:body>

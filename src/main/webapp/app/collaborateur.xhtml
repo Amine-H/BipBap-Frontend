@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>BipBap</title>
+</h:head>
+<h:body>
+	<p:panel>
+		<ui:include src="/includes/header.xhtml" />
+	</p:panel>
+	<p:panel>
+		<ui:param name="collaborateur"
+			value="#{collaborateurBean.collaborateur}" />
+		<!-- infos du collaborateur -->
+		<p:panelGrid columns="2">
+			<p:outputLabel for="nom" value="Nom" />
+			<p:inputText id="nom" value="#{collaborateur.nom}" />
+
+			<p:outputLabel for="prenom" value="Prenom" />
+			<p:inputText id="prenom" value="#{collaborateur.prenom}" />
+
+			<p:outputLabel for="email" value="Email" />
+			<p:inputText id="email" value="#{collaborateur.email}" />
+
+			<p:outputLabel for="matricule" value="Matricule" />
+			<p:inputText id="matricule" value="#{collaborateur.matricule}" />
+
+			<p:outputLabel for="poste" value="Poste" />
+			<p:inputText id="poste" value="#{collaborateur.poste}" />
+		</p:panelGrid>
+		<!-- bilans du collaborateur -->
+		<p:fieldset
+			legend="Bilans de #{collaborateur.nom} #{collaborateur.prenom}">
+			<p:dataTable value="#{collaborateurBean.collab_bilans}" var="v_bilan">
+				<f:facet name="header">Bilans</f:facet>
+				<p:column headerText="Date">
+					<p:outputLabel value="#{v_bilan.dateCreation}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:outputLabel>
+				</p:column>
+				<p:column headerText="Type">
+					<p:outputLabel value="#{v_bilan.dtype}" />
+				</p:column>
+				<p:column headerText="Progression">
+					<p:progressBar styleClass="animated" value="#{v_bilan.progression}" />
+				</p:column>
+				<p:column width="30">
+					<p:link outcome="bilan" value="voir">
+						<f:param name="id" value="#{v_bilan.id}" />
+						<f:param name="type" value="#{v_bilan.dtype}" />
+					</p:link>
+				</p:column>
+			</p:dataTable>
+		</p:fieldset>
+	</p:panel>
+	<p:panel>
+		<ui:include src="/includes/footer.xhtml" />
+	</p:panel>
+</h:body>
+</html>

@@ -28,6 +28,9 @@ public class Bilan implements Serializable {
 	private void setUp() {
 		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		try {
+			if(!params.containsKey("id")){
+				return;
+			}
 			long bilan_id = Long.parseLong(params.get("id"));
 			// if u ever need this
 			// String bilan_type = params.get("type");

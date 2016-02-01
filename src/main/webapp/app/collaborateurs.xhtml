@@ -13,27 +13,22 @@
 		<ui:include src="/includes/header.xhtml" />
 	</p:panel>
 	<p:panel>
-	<p:fieldset legend="Utilisateurs">
-		<p:dataTable value="#{utilisateurs.list}" var="user">
+		<p:dataTable value="#{collaborateursBean.collaborateurs}"
+			var="collaborateur">
 			<p:column headerText="Nom">
-				<h:outputText value="#{user.nom}" />
+				<p:outputLabel value="#{collaborateur.nom}" />
 			</p:column>
+
 			<p:column headerText="Prenom">
-				<h:outputText value="#{user.prenom}" />
+				<p:outputLabel value="#{collaborateur.prenom}" />
 			</p:column>
-			<p:column headerText="Matricule">
-				<h:outputText value="#{user.matricule}" />
-			</p:column>
-			<p:column headerText="Poste">
-				<h:outputText value="#{user.poste}" />
-			</p:column>
+			
 			<p:column headerText="Details">
-				<p:link outcome="utilisateur" value="voir">
-					<f:param name="id" value="#{user.id}"/>
+				<p:link outcome="collaborateur" value="voir">
+					<f:param name="id" value="#{collaborateur.id}"/>
 				</p:link>
 			</p:column>
 		</p:dataTable>
-	</p:fieldset>
 	</p:panel>
 	<p:panel>
 		<ui:include src="/includes/footer.xhtml" />

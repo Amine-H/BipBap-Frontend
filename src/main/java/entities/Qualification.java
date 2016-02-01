@@ -3,13 +3,16 @@ package entities;
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @XmlRootElement
 public class Qualification implements Serializable, Identifiable {
 	private static final long serialVersionUID = 3980681774958277995L;
 	private long id;
 	private String theme;
-	private String qualification;
+	private int qualification;
 	private String remarque;
+	@JsonIgnore
 	private Feedback feedback;
 
 	@Override
@@ -30,11 +33,11 @@ public class Qualification implements Serializable, Identifiable {
 		this.theme = theme;
 	}
 
-	public String getQualification() {
+	public int getQualification() {
 		return qualification;
 	}
 
-	public void setQualification(String qualification) {
+	public void setQualification(int qualification) {
 		this.qualification = qualification;
 	}
 
@@ -46,10 +49,16 @@ public class Qualification implements Serializable, Identifiable {
 		this.remarque = remarque;
 	}
 
+	/**
+	 * @return the feedback
+	 */
 	public Feedback getFeedback() {
 		return feedback;
 	}
 
+	/**
+	 * @param feedback the feedback to set
+	 */
 	public void setFeedback(Feedback feedback) {
 		this.feedback = feedback;
 	}

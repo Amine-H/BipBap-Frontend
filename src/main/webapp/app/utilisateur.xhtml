@@ -31,10 +31,10 @@
 				<p:inputText value="#{utilisateur.utilisateur.email}"/>
 				
 				<p:outputLabel value="Password"/>
-				<p:inputText value="#{utilisateur.utilisateur.password}"/>
+				<p:password value="#{utilisateur.password}" redisplay="true"/>
 				
-				<p:commandButton action="utilisateur.modifier" value="Modifier"/>
-				<p:commandButton action="utilisateur.annuler" value="Annuler"/>
+				<p:commandButton action="#{utilisateur.modifier}" value="Modifier"/>
+				<p:commandButton action="#{utilisateur.annuler}" value="Annuler"/>
 			</p:panelGrid>
 		</p:fieldset>
 	</p:panel>

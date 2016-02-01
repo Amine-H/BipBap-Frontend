@@ -9,11 +9,13 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import entities.Feedback;
 import entities.Qualification;
+import rest.clients.BilanObjectifClient;
 import rest.clients.FeedbackClient;
 
 @ManagedBean
@@ -26,40 +28,87 @@ public class FeedbackBean implements Serializable {
 	private String collab_prenom;
 	private String collab_matricule;
 	private Feedback feedback;
+	private Long objectif_id;
+	private Long feedback_id;
+	
+	@ManagedProperty(value="#{userSession}")
+	private UserSession userSession;
 
 	@PostConstruct
 	public void postContruct() {
 		initThemes();
 		initQualifications();
-		
+
 		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		try{
+			if(params.containsKey("o_id")){
+				this.objectif_id = new Long(params.get("o_id"));
+			}
 			if(params.containsKey("id")){
-				long feedback_id = Long.parseLong(params.get("id"));
+				Long feedback_id = this.feedback_id = new Long(params.get("id"));
 				FeedbackClient client = new FeedbackClient();
 				feedback = client.find(feedback_id);
+				List<Qualification> qualifications = client.getQualifications(feedback_id);
+				if(qualifications == null){
+					qualifications = initNewQualifications();
+				}
+
+				feedback.setQualifications(qualifications);
 			}else{
 				feedback = initNewFeedback();
+				entities.Utilisateur user = userSession.getUser();
+				if(user.isA("Evaluateur")){
+					feedback.setEvaluateur((entities.Evaluateur)user);
+				}else{
+					FacesContext.getCurrentInstance().getExternalContext().redirect("dashboard.xhtml");
+				}
 			}
 		}catch(Exception e){e.printStackTrace();}
 	}
 	
 	private Feedback initNewFeedback(){
 		Feedback feedback = new Feedback();
-		List<Qualification> qualifications = new ArrayList<>();
+		List<Qualification> qualifications = initNewQualifications();
 		feedback.setQualifications(qualifications);
-		
+
+		return feedback;
+	}
+	
+	private List<Qualification> initNewQualifications(){
+		List<Qualification> qualifications = new ArrayList<>();
 		//populate List<Qualification>
 		for(int i = 0;i < themes.size();i++){
 			Qualification qualification = new Qualification();
 			qualification.setTheme(themes.get(i));
 			qualifications.add(qualification);
 		}
-		return feedback;
+		
+		return qualifications;
 	}
 	
+	
+	
 	public String doEnregistrer(){
+		System.out.println("started doEnregistrer");
 		
+		if(objectif_id != null){
+			if(feedback_id != null){//update feedback
+				FeedbackClient client = new FeedbackClient();
+				client.update(feedback, feedback_id);
+				client.updateQualifications(feedback_id, feedback.getQualifications());
+			}else{//create feedback
+				System.out.println("adding new feedback to objectif "+ objectif_id);
+				//add feedback
+				BilanObjectifClient objectifClient = new BilanObjectifClient();
+				objectifClient.addFeedback(objectif_id, this.feedback);
+				
+				//set Qualifications
+				FeedbackClient feedbackClient = new FeedbackClient();
+				feedbackClient.setQualifications(objectif_id, this.feedback.getQualifications());
+			}
+		}else{
+			System.out.println("error please specify o_id");
+		}
 		return "";
 	}
 
@@ -73,10 +122,52 @@ public class FeedbackBean implements Serializable {
 	private void initQualifications() {
 		// initializing qualifications
 		qualifications = new HashMap<>();
-		qualifications.put("Critique", 0);
-		qualifications.put("A Développer", 1);
-		qualifications.put("Selon attente", 2);
-		qualifications.put("Démontre des forces", 3);
+		qualifications.put("Critique", 1);
+		qualifications.put("A Développer", 2);
+		qualifications.put("Selon attente", 3);
+		qualifications.put("Démontre des forces", 4);
+	}
+
+	/**
+	 * @return the objectif_id
+	 */
+	public Long getObjectif_id() {
+		return objectif_id;
+	}
+
+	/**
+	 * @param objectif_id the objectif_id to set
+	 */
+	public void setObjectif_id(Long objectif_id) {
+		this.objectif_id = objectif_id;
+	}
+
+	/**
+	 * @return the feedback_id
+	 */
+	public Long getFeedback_id() {
+		return feedback_id;
+	}
+
+	/**
+	 * @param feedback_id the feedback_id to set
+	 */
+	public void setFeedback_id(Long feedback_id) {
+		this.feedback_id = feedback_id;
+	}
+
+	/**
+	 * @return the userSession
+	 */
+	public UserSession getUserSession() {
+		return userSession;
+	}
+
+	/**
+	 * @param userSession the userSession to set
+	 */
+	public void setUserSession(UserSession userSession) {
+		this.userSession = userSession;
 	}
 
 	public List<String> getThemes() {

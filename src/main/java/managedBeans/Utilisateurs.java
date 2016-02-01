@@ -1,7 +1,6 @@
 package managedBeans;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -9,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import entities.Utilisateur;
+import rest.clients.UtilisateurClient;
 
 @ManagedBean
 @ViewScoped
@@ -18,7 +18,8 @@ public class Utilisateurs implements Serializable{
 
 	@PostConstruct
 	public void postConstruct(){
-		list = new ArrayList<Utilisateur>();
+		UtilisateurClient client = new UtilisateurClient();
+		list = client.findAll();
 	}
 	
 	public List<Utilisateur> getList() {
